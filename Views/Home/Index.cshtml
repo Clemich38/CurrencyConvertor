@@ -1,9 +1,107 @@
-﻿@{
+﻿@model CurrencyConvertor.ViewModels.CurrencyModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div  style="margin-top:30px;">
+<div style="margin-top:30px;">
     
-    <strong>Exchange Rate:</strong>
-    <span style="color:teal">@ViewData["exchange_rate"]</span></br>
+    <!--<div class="row">
+        <div class="col-sm-3">
+            <select class="form-control" id="countryCode1">
+                @foreach (var cur in Model.currencyDic.Values) 
+                {
+                    <option>
+                        @cur.name
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="col-sm-3">
+            <select class="form-control" id="countryCode2">
+                @foreach (var cur in Model.currencyDic.Values) 
+                {
+                    <option>
+                        @cur.name
+                    </option>
+                }
+            </select>
+        </div>
+    </div>-->
+    
+
+
+
+    @using (Html.BeginForm("GetRate", "Home", FormMethod.Post, new { role = "form" })) {
+
+        @* Name textbox *@
+        <div class="row">
+            <div class="form-group">
+                <label>
+                    Value:
+                </label>
+                    @Html.TextBoxFor(m => m.value1, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <label>
+                    From: 
+                </label>
+                    @Html.DropDownListFor(m => m.countryCode1, 
+                    
+                        new SelectList(Model.currencyDic, "Key", "Value.name"),
+
+                        "- Please select your currency -",
+
+                        new { @class = "form-control" }
+                    )
+            </div>
+
+            <div class="col-sm-3">
+                <label>
+                    To:
+                </label>
+                    @Html.DropDownListFor(m => m.countryCode2, 
+                    
+                        new SelectList(Model.currencyDic, "Key", "Value.name"),
+
+                        "- Please select your currency -",
+
+                        new { @class = "form-control" }
+                    )
+            </div>
+        </div>
+
+        <button style="margin-top:30px;" type="submit" class="btn btn-primary">Convert</button>
+        
+    }
+
+    
+    <div class="row"  style="margin-top:30px;">
+        
+        <strong>Result:</strong>
+        <span>
+            <font size="6" style="color:teal">
+                @Model.value2
+            </font>
+            <font size="3">
+                @Model.countryCode2
+            </font>
+        </span></br>
+
+        <strong>Exchange Rate:</strong>
+        <span style="color:teal">@Model.exchangeRate</span></br>
+    <div>
+
+    <!--<div class="row"  style="margin-top:30px;">    
+        @foreach (var cur in Model.currencyDic.Values) 
+        {
+            <div>
+                @cur.code
+            </div>
+        }
+    </div>  -->
+
 </div>
