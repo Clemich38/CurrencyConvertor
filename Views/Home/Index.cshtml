@@ -5,36 +5,10 @@
 
 <div style="margin-top:30px;">
     
-    <!--<div class="row">
-        <div class="col-sm-3">
-            <select class="form-control" id="countryCode1">
-                @foreach (var cur in Model.currencyDic.Values) 
-                {
-                    <option>
-                        @cur.name
-                    </option>
-                }
-            </select>
-        </div>
-
-        <div class="col-sm-3">
-            <select class="form-control" id="countryCode2">
-                @foreach (var cur in Model.currencyDic.Values) 
-                {
-                    <option>
-                        @cur.name
-                    </option>
-                }
-            </select>
-        </div>
-    </div>-->
-    
-
-
 
     @using (Html.BeginForm("GetRate", "Home", FormMethod.Post, new { role = "form" })) {
 
-        @* Name textbox *@
+        <!-- Value TextBox  -->
         <div class="row">
             <div class="form-group">
                 <label>
@@ -49,9 +23,11 @@
                 <label>
                     From: 
                 </label>
+                    <!-- Currencies dropdown list -->
                     @Html.DropDownListFor(m => m.countryCode1, 
                     
-                        new SelectList(Model.currencyDic, "Key", "Value.name", "Model.countryCode1"),
+                        <!-- Build a select list from the dictionary -->
+                        new SelectList(Model.currencyDic, "Key", "Value.name"),
 
                         "- Please select your currency -",
 
@@ -63,8 +39,10 @@
                 <label>
                     To:
                 </label>
+                    <!-- Currencies dropdown list -->
                     @Html.DropDownListFor(m => m.countryCode2, 
                     
+                        <!-- Build a select list from the dictionary -->
                         new SelectList(Model.currencyDic, "Key", "Value.name"),
 
                         "- Please select your currency -",
