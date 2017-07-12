@@ -47,7 +47,6 @@ namespace CurrencyConvertor.Controllers
 
             curModel.currencyDic = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, Currency>>(str);
 
-
             // Build the Http request string
             const string urlPattern = "http://finance.yahoo.com/d/quotes.csv?s={0}{1}=X&f=l1";
             string url = String.Format(urlPattern, countryCode1, countryCode2);
@@ -60,6 +59,7 @@ namespace CurrencyConvertor.Controllers
                 // Get the response string
                 string strResponse = await response.Content.ReadAsStringAsync();
                 decimal exchangeRate = decimal.Parse(strResponse);
+                
 
                 // Store it in the dictionnary for disply
                 curModel.countryCode1 = countryCode1;
