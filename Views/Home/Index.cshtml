@@ -51,7 +51,7 @@
                 </label>
                     @Html.DropDownListFor(m => m.countryCode1, 
                     
-                        new SelectList(Model.currencyDic, "Key", "Value.name"),
+                        new SelectList(Model.currencyDic, "Key", "Value.name", "Model.countryCode1"),
 
                         "- Please select your currency -",
 
@@ -94,14 +94,5 @@
         <strong>Exchange Rate:</strong>
         <span style="color:teal">@Model.exchangeRate</span></br>
     <div>
-
-    <!--<div class="row"  style="margin-top:30px;">    
-        @foreach (var cur in Model.currencyDic.Values) 
-        {
-            <div>
-                @cur.code
-            </div>
-        }
-    </div>  -->
 
 </div>

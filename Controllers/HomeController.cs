@@ -30,6 +30,12 @@ namespace CurrencyConvertor.Controllers
         [HttpPost]
         public async Task<IActionResult> GetRate(decimal value1, string countryCode1, string countryCode2)
         {
+            if(countryCode1 == null)
+                countryCode1 = "USD";
+            
+            if(countryCode2 == null)
+                countryCode2 = "EUR";
+
             return View("Index", await GetExRate(value1, countryCode1, countryCode2));
         }
 
